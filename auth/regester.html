@@ -1,3 +1,4 @@
+<!-- Updated register.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,6 +16,10 @@
             <h1>Signup</h1>
             <form id="signup-form">
                 <div class="form-field">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" name="username" placeholder="Enter your username" required>
+                </div>
+                <div class="form-field">
                     <label for="firstname">First Name</label>
                     <input type="text" id="firstname" name="firstname" placeholder="Enter your first name" required>
                 </div>
@@ -25,14 +30,6 @@
                 <div class="form-field">
                     <label for="email">Email</label>
                     <input type="email" id="email" name="email" placeholder="Enter your email" required>
-                </div>
-                <div class="form-field">
-                    <label for="birthday">Date of Birth</label>
-                    <input type="date" id="birthday" name="birthday" required>
-                </div>
-                <div class="form-field">
-                    <label for="phone">Phone Number</label>
-                    <input type="tel" id="phone" name="phone" placeholder="Enter your phone number" required>
                 </div>
                 <div class="form-field">
                     <label for="password">Password</label>
@@ -56,12 +53,15 @@
     <script>
         document.getElementById('signup-form').addEventListener('submit', function(e) {
             e.preventDefault();
+            const username = document.getElementById('username').value.trim();
             const password = document.getElementById('password').value;
             const confirmPassword = document.getElementById('confirm-password').value;
 
             if (password !== confirmPassword) {
                 alert('Passwords do not match. Please try again.');
             } else {
+                // Store username in localStorage
+                localStorage.setItem('username', username);
                 alert('Signup successful!');
                 // Redirect to login page
                 window.location.href = '/auth/login.html';

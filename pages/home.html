@@ -22,9 +22,18 @@
 
   <section class="courses-section">
     <div id="object1">
-      <a href="cumEng.html"><img src="/img/enginer2.jpg" alt="Computer Engineering" id="object2"></a>
-      <a href="dataAnaly.html"><img src="../img/DataAnylis.jpg" alt="Data Analysis" id="object3"></a>
-      <a href="mathPage.html"><img src="../img/math.jpg" alt="Mathematics" id="object4"></a>
+      <div class="course">
+        <a href="cumEng.html"><img src="/img/enginer2.jpg" alt="Computer Engineering" id="object2"></a>
+        <button class="done-btn" data-course="engineering">Done</button>
+      </div>
+      <div class="course">
+        <a href="dataAnaly.html"><img src="../img/DataAnylis.jpg" alt="Data Analysis" id="object3"></a>
+        <button class="done-btn" data-course="dataAnalysis">Done</button>
+      </div>
+      <div class="course">
+        <a href="mathPage.html"><img src="../img/math.jpg" alt="Mathematics" id="object4"></a>
+        <button class="done-btn" data-course="math">Done</button>
+      </div>
     </div>
   </section>
 
@@ -32,28 +41,66 @@
     <div id="object5">
       <div class="badges" id="BadG">
         <div class="title">الشارات</div>
-        <div class="prograss-number">
-          <div class="prograss-from">0%</div>
-          <div class="prograss-to">100%</div>
+        <div class="progress-container">
+          <div class="prograss-number">
+            <div class="prograss-from">0%</div>
+            <div class="prograss-to">100%</div>
+          </div>
+          <div class="prograss" id="prograss"></div>
         </div>
-        <div class="prograss" id="prograss"></div>
         <div class="badges-content">
           <div class="badges-img">
-            <img id="Engineer" src="../img/logoEng.png" alt="Engineer Badge" width="180" height="90">
+            <img id="Engineer" src="../img/logoEng.png" alt="Engineer Badge">
             <div class="badge-title">Computer Engineering</div>
           </div>
           <div class="badges-img">
-            <img id="data" src="../img/logoData.png" alt="Data Badge" width="180" height="90">
+            <img id="data" src="../img/logoData.png" alt="Data Badge">
             <div class="badge-title">Data Analysis</div>
           </div>
           <div class="badges-img">
-            <img id="math" src="../img/logomath.png" alt="Math Badge" width="180" height="90">
+            <img id="math" src="../img/logomath.png" alt="Math Badge">
             <div class="badge-title">Mathematics</div>
           </div>
         </div>
       </div>
     </div>
   </section>
+
+  <script>
+    const badges = {
+      engineering: document.getElementById("Engineer"),
+      dataAnalysis: document.getElementById("data"),
+      math: document.getElementById("math"),
+    };
+
+    const progressBar = document.getElementById("prograss");
+    const progressFrom = document.querySelector(".prograss-from");
+
+    const courses = {
+      engineering: false,
+      dataAnalysis: false,
+      math: false,
+    };
+
+    document.querySelectorAll(".done-btn").forEach((button) => {
+      button.addEventListener("click", () => {
+        const course = button.getAttribute("data-course");
+
+        if (!courses[course]) {
+          courses[course] = true;
+          badges[course].style.opacity = "1"; // Show badge
+          updateProgress();
+        }
+      });
+    });
+
+    function updateProgress() {
+      const completedCourses = Object.values(courses).filter((done) => done).length;
+      const progress = (completedCourses / Object.keys(courses).length) * 100;
+      progressBar.style.width = `${progress}%`;
+      progressFrom.textContent = `${Math.round(progress)}%`;
+    }
+  </script>
 
   <script>
     const contentData = ["computer engineering", "data analysis", "mathematics"];

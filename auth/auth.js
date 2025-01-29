@@ -19,7 +19,8 @@ class Auth {
         const passwordValue = this.password.value.trim();
 
         if (this.validateInputs(emailValue, passwordValue)) {
-            alert('Login successful!');
+            const username = localStorage.getItem('username') || 'User';
+            alert(`Welcome back, ${username}!`);
             window.location.href = '/pages/home.html';
         } else {
             alert('Invalid email or password. Please try again.');
@@ -34,7 +35,6 @@ class Auth {
             alert('Please enter your email address.');
         } else {
             alert('A reset link has been sent to your email address.');
-            // You can replace this alert with an actual API call to handle password reset
         }
     }
 
