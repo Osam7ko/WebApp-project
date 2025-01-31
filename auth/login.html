@@ -1,4 +1,4 @@
-<!-- Updated login.html -->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css">
     <link rel="stylesheet" href="/style/login.css">
     <script src="/HeaderComponent/loadHeader.js" defer></script>
+    <script src="/auth/auth.js" defer></script>
     <title>Login - Useful Knowledge</title>
 </head>
 <body>
@@ -38,28 +39,5 @@
     <footer>
         <p>Don't have an account? <a href="register.html">Create account</a></p>
     </footer>
-
-    <script>
-        document.getElementById('login-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const email = document.getElementById('email').value.trim();
-            const password = document.getElementById('password').value.trim();
-
-            if (email && password) {
-                // Fetch the username from localStorage
-                const username = localStorage.getItem('username');
-                if (username) {
-                    alert(`Welcome back, ${username}!`);
-                    // Redirect to home page
-                    window.location.href = '/pages/home.html';
-                } else {
-                    alert('Login successful!');
-                    window.location.href = '/pages/home.html';
-                }
-            } else {
-                alert('Please fill in all fields.');
-            }
-        });
-    </script>
 </body>
 </html>
